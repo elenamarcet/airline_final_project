@@ -7,3 +7,8 @@ def main():
 
     #Cargamos la data del archivo funciones.py
     data = load_data()
+    st.dataframe(data)
+
+# Python script entry point
+if __name__ == '__main__':
+    main()  # Call the main function when the script is executed
