@@ -1,4 +1,4 @@
-def data_import_and_cleaning(yalm_path):
+def load_data(yalm_path):
     """
     Lee un archivo de configuración YAML, carga el dataset, realiza varias transformaciones en el dataset y devuelve el DataFrame resultante.
 
