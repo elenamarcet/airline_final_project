@@ -47,7 +47,7 @@ def graph_distribution_satisfaction(df):
     fig = px.pie(satisfied_percent, values='proportion', names='Satisfaction', title='Distribution of satisfied and dissatisfied customers')
 
     #mostramos el gráfico
-    fig.show()
+    return fig
 
 def graph_satisfaction(df):
     """
@@ -277,7 +277,7 @@ def satisfaction_to_numeric(df):
     return df
 
 
-def prediction_model(df_dummies):
+def prediction_model(df):
     """
     Entrena un modelo de clasificación utilizando un clasificador Gradient Boosting, lo evalúa y muestra las métricas de evaluación.
 
@@ -291,6 +291,8 @@ def prediction_model(df_dummies):
     from sklearn.metrics import precision_score, recall_score, f1_score, make_scorer
     from sklearn.ensemble import GradientBoostingClassifier
     from sklearn.model_selection import GridSearchCV
+    import pandas as pd
+    import joblib
 
     df_dummies = pd.get_dummies(df, columns = ['Class', 'Customer_type', 'Type_of_travel'])
 
@@ -306,7 +308,10 @@ def prediction_model(df_dummies):
                                    n_estimators=2000)
     
     #entrenamos el modelo
-    gb.fit(X_train, y_train)
+    #gb.fit(X_train, y_train)
+
+    # Cargar el modelo desde el archivo
+    gb = joblib.load('modelo_gb.pkl')
 
     pred = gb.predict(X_test)
 
@@ -320,4 +325,30 @@ def prediction_model(df_dummies):
     print('F1:',f1_gradient_boost)
 
     #Devolvemos las métricas de evaluación
-    return precision_gradient_boost, recall_gradient_boost, f1_gradient_boost
+    return gb, X_train, features
+
+
+
+def graph_featuring_importance(gb, X_train):
+    
+    import numpy as np
+    import plotly.express as px
+    from sklearn.ensemble import GradientBoostingClassifier
+    from sklearn.model_selection import train_test_split
+
+    feature_names = X_train.columns
+
+    feature_importances = gb.feature_importances_
+
+    indices = np.argsort(feature_importances)[::-1]
+    sorted_importances = feature_importances[indices]
+    sorted_features = [feature_names[i] for i in indices]
+
+    fig = px.bar(
+    x=sorted_features, 
+    y=sorted_importances, 
+    labels={'x': 'Características', 'y': 'Importancia'},
+    title="Importancia de las Características del Modelo Gradient Boosting"
+    )
+
+    return fig
