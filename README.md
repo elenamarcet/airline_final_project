@@ -3,8 +3,8 @@
 ## 👋 Introducción
 ¡Hola, analista o curioso de los datos! 📈 Soy Elena, estudiante de análisis de datos en Ironhack. Este proyecto aborda la predicción de satisfacción de los pasajeros de aerolíneas utilizando técnicas de aprendizaje automático. El objetivo es permitir a las aerolíneas identificar y mejorar los factores que influyen en la satisfacción de sus pasajeros, optimizando así la experiencia del cliente y fomentando la lealtad.
 
-Puedes ver la presentación de mi proyecto en el siguiente enlace:
-Streamlit:
+Puedes ver la presentación completa [aquí](https://docs.google.com/presentation/d/1H83xIALcABXbpNZSqHx8Vju7VaYvmZoh-xLs9qjSclY/edit?usp=sharing).
+
 
 ## Tabla de contenidos
 
