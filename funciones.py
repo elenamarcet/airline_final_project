@@ -347,8 +347,8 @@ def graph_featuring_importance(gb, X_train):
     fig = px.bar(
     x=sorted_features, 
     y=sorted_importances, 
-    labels={'x': 'Características', 'y': 'Importancia'},
-    title="Importancia de las Características del Modelo Gradient Boosting"
+    labels={'x': 'Features', 'y': 'Importance'},
+    title="Level of importance of flight features"
     )
 
     return fig

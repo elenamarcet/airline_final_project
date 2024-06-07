@@ -143,7 +143,7 @@ def main():
 
     df_predict = pd.DataFrame(predict).value_counts(normalize=True)
     df_predict_proportion = df_predict.reset_index().rename(columns={0:'Satisfaction_binari'})
-    df_predict_proportion['Satisfaction_binari'] = df_predict_proportion['Satisfaction_binari'].astype(str).replace({'0':'No', '1':'Yes'})
+    df_predict_proportion['Satisfaction_binari'] = df_predict_proportion['Satisfaction_binari'].astype(str).replace({'0':'Dissatisfied', '1':'Satisfied'})
 
     fig2 = px.pie(df_predict_proportion, values='proportion', names='Satisfaction_binari', title='Distribution of Satisfied and Dissatisfied Customers')
     st.plotly_chart(fig2)
